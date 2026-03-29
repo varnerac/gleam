@@ -29,7 +29,12 @@ pub fn command(paths: &ProjectPaths) -> Result<(), Error> {
     let mut command = Command::new("erl");
 
     // Print character lists as lists
-    let _ = command.arg("-stdlib").arg("shell_strings").arg("false");
+    let _ = command
+        .arg("-stdlib")
+        .arg("shell_strings")
+        .arg("false")
+        .arg("+pc")
+        .arg("unicode");
 
     // Specify locations of .beam files
     let packages = paths.build_directory_for_target(Mode::Dev, Target::Erlang);
